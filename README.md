@@ -3,8 +3,8 @@
 Install
 -------
 
-[`node`](https://nodejs.org/)
-[`bower`](https://bower.io/)
+* [`node`](https://nodejs.org/)
+* [`bower`](https://bower.io/)
 
 Start
 -----
