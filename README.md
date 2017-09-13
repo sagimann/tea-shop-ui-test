@@ -4,6 +4,7 @@ Install
 -------
 
 [`node`](https://nodejs.org/)
+[`bower`](https://bower.io/)
 
 Start
 -----
