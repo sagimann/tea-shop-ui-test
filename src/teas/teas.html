@@ -1,3 +1,88 @@
-<div class="row" ng-controller="TeasCtrl as teas">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
+                <input ng-model="filter.$" type="text" class="form-control"
+                       placeholder="Explore our flavours..." aria-label="Filter" aria-describedby="basic-addon1">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <i class="fa fa-sort"></i>&nbsp
+            <select ng-model="selectedSort" 
+                    ng-options="so.name for so in sortOptions">
+            </select>
+        </div>
+        <div class="col-md-4">
+            <i class="fa fa-coffee"></i>&nbsp
+            <select ng-model="type" 
+                    ng-options="t for t in types">
+            </select>
+        </div>
+        <div class="col-md-4">
+            <i class="fa fa-eye"></i>&nbsp
+            <div class="btn-group" role="group" aria-label="Layout">
+                <button type="button" class="btn btn-secondary" ng-click="setLayout('grid')"
+                    data-toggle="tooltip" data-placement="bottom" title="Pinterest-style view">
+                    <i class="fa fa-th-large"></i>
+                </button>
+                <button type="button" class="btn btn-secondary" ng-click="setLayout('table')"
+                    data-toggle="tooltip" data-placement="bottom" title="Table view">
+                    <i class="fa fa-table"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="card-columns" ng-if="layout == 'grid'">
+            <div class="card" ng-repeat="tea in teaList | filter:filter | filter: type == 'Any Type' ? undefined : {type: type} | orderBy:selectedSort.prop:selectedSort.desc">
+                <div class="card-header">
+                    Price: {{tea.price}}
+                    <i class="fa fa-usd"></i>
+                </div>
 
+                <img ng-if="tea.image" alt="{{tea.name}}" class="img-fluid" ng-src="{{tea.image}}">
+
+                <div class="card-block">
+                    <h4 class="card-title">{{tea.name}}</h4>
+                    <p class="card-text">{{tea.description}}</p>
+                </div>
+                <div class="card-block">
+                    <a class="card-link" ng-href="/tea/{{tea.id}}">Product Page</a>
+                    <a class="card-link" ng-href="{{tea.link}}">Details Source</a>
+                    <ngcart-addtocart id="{{tea.id}}" data="tea" name="{{tea.name}}" price="{{tea.price}}" quantity="1" quantity-max="5"><i class="fa fa-cart-plus"></i> Add to Cart</ngcart-addtocart>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-hover" ng-if="layout == 'table'">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th></ht>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tea in teaList | filter:filter | filter: type == 'Any Type' ? undefined : {type: type} | orderBy:selectedSort.prop:selectedSort.desc"
+                    ng-click="goToDetails(tea.id)">
+                    <td>{{tea.name}}</td>
+                    <td><i class="fa fa-usd"></i>{{tea.price}}</td>
+                    <td>
+                        <ngcart-addtocart
+                            id="{{tea.id}}" data="tea" name="{{tea.name}}"
+                            price="{{tea.price}}" quantity="1" quantity-max="5">
+                                <i class="fa fa-cart-plus"></i> Add to Cart
+                        </ngcart-addtocart>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

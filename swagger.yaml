@@ -40,7 +40,7 @@ paths:
               $ref: '#/definitions/TeaItem'
         '400':
           description: bad input parameter
-  '/teas/{id}':
+  '/tea/{id}':
     get:
       summary: Get one tea product
       produces:

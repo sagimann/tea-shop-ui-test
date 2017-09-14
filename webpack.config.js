@@ -173,7 +173,8 @@ module.exports = function makeWebpackConfig() {
             $: 'jquery',
             jQuery: 'jquery',
             Tether: 'tether',
-            'window.jQuery': 'jquery'
+            'window.jQuery': 'jquery',
+            Popper: ['popper.js', 'default']
         })
     ]
 

@@ -20,6 +20,6 @@ module
         var teas = Restangular.all('teas').all('featured');
 
         teas.getList().then((teas) => {
-            this.teas = teas;
+            this.teas = teas.plain()
         });
     });

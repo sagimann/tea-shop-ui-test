@@ -48,8 +48,14 @@ class AppCtrl {
 
 
 
-module.config(function ($locationProvider, $routeProvider, RestangularProvider) {
-    $locationProvider.html5Mode(true)
+module.config(function ($locationProvider, $routeProvider, RestangularProvider, $sceDelegateProvider) {
+    $locationProvider.html5Mode(true);
+    $sceDelegateProvider.resourceUrlWhitelist([
+        // Allow same origin resource loads.
+        'self',
+        // Allow loading from our assets domain. **.
+        'http://localhost:3000/**'
+    ]);
     RestangularProvider.setBaseUrl('http://localhost:3000');
 });
 
