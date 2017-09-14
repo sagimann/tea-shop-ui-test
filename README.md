@@ -1,7 +1,7 @@
 # Tea Shop UI
 
-Post-fork Fixes
----------------
+Post-fork
+---------
 
 * All controllers are digested twice, causing every controller to initialize twice, load data twice from the server, etc. This was because they were specified both in the routerProvider and in the template file. All references from the template files were removed, all referenes in the routerProvider were left as-is
 
