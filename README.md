@@ -1,9 +1,21 @@
 # Tea Shop UI
 
+Post-fork Fixes
+---------------
+
+* All controllers are digested twice, causing every controller to initialize twice, load data twice from the server, etc. This was because they were specified both in the routerProvider and in the template file. All references from the template files were removed, all referenes in the routerProvider were left as-is
+
+* Seems like ngCart also depends on bower being available. I've mentioned this in my readme fork.
+
+* Also seems like webpack needs to be manually configured to include the popper.js plugin, otherwise the main page doesn't load and sends a "Bootstrap requires popper.js" error. I've updated the webpack plugin config to fix this.
+
+* The given swagger.yaml file says /teas/id instead of /tea/id as in the readme.md file. I've fixed the swagger file accordingly.
+
 Install
 -------
 
-[`node`](https://nodejs.org/)
+* [`node`](https://nodejs.org/)
+* [`bower`](https://bower.io/)
 
 Start
 -----
